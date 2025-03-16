@@ -1,0 +1,20 @@
+.alert {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.default {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.destructive {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: var(--destructive);
+}
+

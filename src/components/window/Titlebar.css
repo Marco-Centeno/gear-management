@@ -1,0 +1,41 @@
+.title-bar{
+    position: sticky;
+    display: flex;
+    width: 100vw;
+    top: 0;
+    right: 0;
+}
+
+.title-subline{
+  -webkit-app-region: drag;
+  user-select: none;
+  flex-grow: 4;
+}
+
+.title-items{
+    justify-self: self-end;
+    background: #fff;
+    border-radius: 0 0 0 25px;
+    z-index: 50;
+}
+
+.title-btn{
+    padding: 12px 24px;
+    cursor:pointer;
+    background: transparent;
+    border: transparent;
+    color: #000;  
+    box-shadow: none;
+    transition: all ease .2s;
+}
+
+.title-btn:hover{
+    padding: 12px 24px;
+    cursor:pointer;
+    background: transparent;
+    border: transparent;
+    color: #5171ff;  
+    transform: translateY(4px);
+    box-shadow: 12px;
+    transition: all ease .2s;
+}

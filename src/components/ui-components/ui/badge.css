@@ -1,0 +1,67 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+/* Variants */
+.badge-default {
+  background-color: var(--secondary-light);
+  color: var(--text);
+}
+
+.badge-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.badge-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.badge-success {
+  background-color: var(--success);
+  color: white;
+}
+
+.badge-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.badge-warning {
+  background-color: var(--warning);
+  color: white;
+}
+
+.badge-info {
+  background-color: var(--info);
+  color: white;
+}
+
+.badge-light {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.badge-dark {
+  background-color: var(--dark);
+  color: white;
+}
+
+/* Modifiers */
+.badge-pill {
+  border-radius: 9999px;
+}
+
+.badge-rounded {
+  border-radius: 0.5rem;
+}
+

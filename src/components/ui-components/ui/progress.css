@@ -1,0 +1,48 @@
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.progress {
+  flex-grow: 1;
+  height: 6px;
+  background-color: var(--secondary-light);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.progress-bar-primary {
+  background-color: var(--primary);
+}
+
+.progress-bar-success {
+  background-color: var(--success);
+}
+
+.progress-bar-warning {
+  background-color: var(--warning);
+}
+
+.progress-bar-danger {
+  background-color: var(--danger);
+}
+
+.progress-bar-info {
+  background-color: var(--info);
+}
+
+.progress-value {
+  min-width: 40px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+

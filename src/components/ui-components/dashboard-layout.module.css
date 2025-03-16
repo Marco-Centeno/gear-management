@@ -1,0 +1,38 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 0 24px;
+}
+
+.headerActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+}
+

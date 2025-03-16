@@ -1,0 +1,232 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  margin: .5rem;
+  border: 1px solid transparent;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.btn-default {
+  background-color: var(--background);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-default:hover:not(:disabled) {
+  background-color: var(--secondary-light);
+  border-color: var(--border-hover);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+.btn-success {
+  background-color: var(--success);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: var(--success-hover);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+
+.btn-warning {
+  background-color: var(--warning);
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--warning-hover);
+}
+
+.btn-info {
+  background-color: var(--info);
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: var(--info-hover);
+}
+
+.btn-light {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.btn-light:hover:not(:disabled) {
+  background-color: var(--light-hover);
+}
+
+.btn-dark {
+  background-color: var(--dark);
+  color: white;
+}
+
+.btn-dark:hover:not(:disabled) {
+  background-color: var(--dark-hover);
+}
+
+.btn-link {
+  background-color: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+  border: none;
+  padding: 0;
+}
+
+.btn-link:hover:not(:disabled) {
+  color: var(--primary-hover);
+  text-decoration: none;
+}
+
+/* Sizes */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.btn-md {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Modifiers */
+.btn-outline {
+  background-color: transparent;
+  color: currentColor;
+}
+
+.btn-outline.btn-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-outline.btn-secondary {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.btn-outline.btn-secondary:hover:not(:disabled) {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-outline.btn-success {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.btn-outline.btn-success:hover:not(:disabled) {
+  background-color: var(--success);
+  color: white;
+}
+
+.btn-outline.btn-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-outline.btn-danger:hover:not(:disabled) {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-outline.btn-warning {
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+.btn-outline.btn-warning:hover:not(:disabled) {
+  background-color: var(--warning);
+  color: white;
+}
+
+.btn-outline.btn-info {
+  color: var(--info);
+  border-color: var(--info);
+}
+
+.btn-outline.btn-info:hover:not(:disabled) {
+  background-color: var(--info);
+  color: white;
+}
+
+.btn-rounded {
+  border-radius: 9999px;
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+.btn-active {
+  transform: translateY(1px);
+}
+
+.btn-loading {
+  position: relative;
+}
+
+.btn-spinner {
+  display: inline-flex;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

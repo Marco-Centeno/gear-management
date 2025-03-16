@@ -1,0 +1,61 @@
+.container {
+  width: 100%;
+}
+
+.tabsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabsTrigger {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.tabsTrigger:hover {
+  color: var(--text);
+}
+
+.tabsTrigger.active {
+  color: var(--primary);
+}
+
+.tabsTrigger.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.tabsContent > div {
+  display: none;
+}
+
+.tabsContent > div.active {
+  display: block;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
