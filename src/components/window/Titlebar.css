@@ -12,9 +12,11 @@
   -webkit-app-region: drag;
   user-select: none;
   flex-grow: 4;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 24px 12px;
   font-size: larger;
-  background-color: #303030;
+  background-color: var(--menu-background);
+  border: var(--menu-stroke) 1px solid;
+  border-top: none;
   margin:  0px 8px 0 8px;
   padding-left: 8px;
   align-items: center;

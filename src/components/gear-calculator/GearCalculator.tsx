@@ -33,7 +33,7 @@ const GearCalculator = () => {
     if (calculationType === "paso") {
       calculatedDepth = (Number(numTeeth) * Number(pitch)) / (2 * Math.PI) + Number(k);
       calculatedFactor = Math.cos((Number(pressureAngle) * Math.PI) / 180) * (Number(angle) / (Number(undercutAngle) || 1));
-      calculatedRadius = (Number(machineValue) * Math.sin((Number(angle) * Math.PI) / 180) * Number(pitch)) / 25.4;
+      calculatedRadius = (Number(machineValue) * Math.sin((Number(angle) * Math.PI) / 180) * Number(pitch)) / 25.4;      
     } else {
       calculatedDepth = 2.25 * Number(module);
       calculatedFactor = Number(module) * Number(numTeeth) * Math.cos((Number(pressureAngle) * Math.PI) / 180);
@@ -69,7 +69,10 @@ const GearCalculator = () => {
                 <label>Coeficiente K</label><br />
                 <Input type="number" value={k} onChange={(e) => setK(e.target.value ? Number(e.target.value) : "")} />
             </div>
-            <MachineSelector machineValue={machineValue} setMachineValue={setMachineValue} />
+            <div>
+              <MachineSelector machineValue={machineValue} setMachineValue={setMachineValue} />
+            </div>
+            
             {calculationType === "paso" ? (
               <div>
                 <label>Paso</label><br />
@@ -97,6 +100,8 @@ const GearCalculator = () => {
           </div>
           <Button variant="primary" onClick={calculateGear}>Calcular</Button>
         </div>
+        <br />
+        <hr />
       </div>
       <Card title="Resultado" description="Cálculo" className="result">
         {depth !== null && factor !== null && radius !== null && (

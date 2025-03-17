@@ -1,9 +1,11 @@
+import { useState} from "react"
 import  { getCurrentWindow } from "@tauri-apps/api/window";
 import { Minimize, Maximize, X } from "lucide-react"; // Íconos para los botones
 import "./Titlebar.css";
 
 const Titlebar = () => {
      const appWindow = getCurrentWindow();
+
   return (
     <div className="draggable title-bar" >
       <div className="title-subline">

@@ -16,7 +16,7 @@
         "maximizable": true,
         "closable": true,
         "title": "gear-management-app",
-        "minWidth": 1015,
+        "minWidth": 1108,
         "minHeight": 600,
         "transparent": true,
         "decorations": false,

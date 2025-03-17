@@ -1,7 +1,7 @@
 .card {
-  background-color: var(--background);
+  background-color: var(--menu-background);
   border-radius: var(--radius);
-  border: 1px solid var(--border);
+  border: var(--menu-stroke) 1px solid;
   box-shadow: var(--shadow);
   overflow: hidden;
   margin: .5rem;

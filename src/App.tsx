@@ -17,6 +17,8 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }*/
 
+  
+    
   return (
     <Router basename="/">
     <section className="main-app dark">
@@ -25,12 +27,10 @@ function App() {
         <div className="menu">
           <section className="menu-content">
             <center>
-              <br />
-              <h2>
-                Opciones
-              </h2>
-              <br />
-            </center>
+              <strong>
+                Opciones 
+              </strong>
+            </center><br />
             <hr />
             <a href="/#/gear-calculator">
               <Calculator/> Calculator
