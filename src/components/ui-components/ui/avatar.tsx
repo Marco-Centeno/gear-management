@@ -22,7 +22,7 @@ export default function Avatar({ src, alt = "", initials, icon, size = "md", sta
           className="avatar-img"
           onError={(e) => {
             e.currentTarget.style.display = "none"
-            const fallbackEl = e.currentTarget.nextElementSibling
+            const fallbackEl = e.currentTarget
             if (fallbackEl) fallbackEl.style.display = "flex"
           }}
         />

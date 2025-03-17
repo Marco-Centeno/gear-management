@@ -49,14 +49,12 @@ export default function UserList() {
             value={name}
             onChange={(e) => setName(e.target.value)}
         />
-        <br />
         <Input
             type="email"
             placeholder="Correo"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
         />
-        <br />
         <Button variant="primary" onClick={handleAddUser}>Agregar</Button>
     </Card>
       <br />
@@ -67,9 +65,10 @@ export default function UserList() {
         </Alert>
       <ul>
         {users.map((user) => (
-          <Card key={user.id}>
-            {user.name} - {user.email}{" "}
-            <Button variant="danger" onClick={() => handleDeleteUser(user.id)}>🗑️</Button>
+          <Card data-aos="fade-up"
+          data-aos-anchor-placement="bottom-bottom" key={user.id}>
+            <strong>{user.name}</strong> - {user.email}{" "}
+            <Button variant="default" onClick={() => handleDeleteUser(user.id)}>🗑️</Button>
           </Card>
         ))}
       </ul>      

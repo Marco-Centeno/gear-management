@@ -1,7 +1,7 @@
 .input-wrapper {
   position: relative;
   display: inline-flex;
-  width: 100%;
+  min-width: 100%;
 }
 
 .input {
@@ -10,7 +10,7 @@
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--text);
-  background-color: var(--background);
+  background-color: var(--input-background);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   margin: .2rem;

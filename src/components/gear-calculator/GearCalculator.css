@@ -1,0 +1,43 @@
+
+.calculator-structure {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+}
+    
+.calculator {
+    grid-column: span 4 / span 4;
+    grid-row: span 6 / span 6;
+    margin: 0 15%;
+}
+
+.result {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 5;
+}
+
+.search {
+    grid-column: span 2 / span 2;
+    grid-row: span 4 / span 4;
+    grid-column-start: 5;
+    grid-row-start: 3;
+}
+
+.gear-calculator-form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.gear-calculator-form div{
+    flex-grow: 4;
+}
+
+.gear-calculator-form div label{
+    margin-left: 8px;
+}
+      
+        

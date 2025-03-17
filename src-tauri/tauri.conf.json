@@ -16,9 +16,23 @@
         "maximizable": true,
         "closable": true,
         "title": "gear-management-app",
+        "minWidth": 1015,
+        "minHeight": 600,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "visible": false
+      },
+      {
         "width": 800,
-        "height": 600,
-        "decorations": false
+        "height": 300,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "transparent": true,
+        "decorations": false,
+        "visible": false,
+        "resizable": false,
+        "shadow": false
       }
     ],
     "security": {

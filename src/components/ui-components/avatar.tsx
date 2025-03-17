@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+/*import type { ReactNode } from "react"
 import styles from "./avatar.module.css"
 
 interface AvatarProps {
@@ -28,5 +28,5 @@ export function Avatar({ src, alt = "", fallback, className = "" }: AvatarProps)
       </div>
     </div>
   )
-}
+}*/
 

@@ -1,5 +1,4 @@
-"use client"
-
+/*
 import { GripVertical } from "lucide-react"
 import * as ResizablePrimitive from "react-resizable-panels"
 
@@ -43,3 +42,4 @@ const ResizableHandle = ({
 )
 
 export { ResizablePanelGroup, ResizablePanel, ResizableHandle }
+*/

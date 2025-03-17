@@ -1,5 +1,4 @@
-"use client"
-
+/*
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
@@ -221,7 +220,7 @@ const Sidebar = React.forwardRef<
         data-variant={variant}
         data-side={side}
       >
-        {/* This is what handles the sidebar gap on desktop */}
+        {/* This is what handles the sidebar gap on desktop *//*}
         <div
           className={cn(
             "duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
@@ -761,3 +760,4 @@ export {
   SidebarTrigger,
   useSidebar,
 }
+*/

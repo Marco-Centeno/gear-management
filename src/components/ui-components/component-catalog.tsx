@@ -1,4 +1,4 @@
-"use client"
+/*"use client"
 
 import { useState } from "react"
 import Button from "@/components/ui/button"
@@ -197,7 +197,7 @@ export default function ComponentCatalog() {
             <Card title="Inputs" description="Campos de texto para formularios">
               <div className="component-demo">
                 <Input placeholder="Placeholder" />
-                <Input defaultValue="Con valor" /> {/* Cambiado de value a defaultValue */}
+                <Input defaultValue="Con valor" /> {/* Cambiado de value a defaultValue *//*}
                 <Input disabled placeholder="Deshabilitado" />
                 <Input error placeholder="Con error" />
                 <Input success placeholder="Con éxito" />
@@ -719,3 +719,4 @@ export default function ComponentCatalog() {
   )
 }
 
+*/

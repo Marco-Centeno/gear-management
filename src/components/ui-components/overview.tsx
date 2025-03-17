@@ -79,8 +79,8 @@ export function Overview() {
         const progress = Math.min(elapsed / animationDuration, 1)
         currentHeight = targetHeight * progress
 
-        ctx.clearRect(x, y, barWidth, chartHeight)
-        ctx.fillRect(x, rect.height - padding - currentHeight, barWidth, currentHeight)
+        ctx?.clearRect(x, y, barWidth, chartHeight)
+        ctx?.fillRect(x, rect.height - padding - currentHeight, barWidth, currentHeight)
 
         if (progress < 1) {
           requestAnimationFrame(animate)

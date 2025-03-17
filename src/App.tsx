@@ -1,7 +1,10 @@
 import Titlebar from "./components/window/Titlebar";
 import UserList from "./components/window/UserList";
 import "./App.css";
-import { DashboardLayout } from "./components/ui-components/dashboard-layout";
+import GearCalculator from "./components/gear-calculator/GearCalculator";
+import { HashRouter  as Router, Route, Routes } from "react-router";
+import { Calculator, Cog, HardDrive, User } from "lucide-react";
+//import { DashboardLayout } from "./components/ui-components/dashboard-layout";
 //import { invoke } from "@tauri-apps/api/core";
 
 function App() {
@@ -15,15 +18,51 @@ function App() {
   }*/
 
   return (
+    <Router basename="/">
     <section className="main-app dark">
       <Titlebar />
-      <div className="container">
-        <DashboardLayout>
-          <UserList /> 
-        </DashboardLayout>
+      <div className="container parent">
+        <div className="menu">
+          <section className="menu-content">
+            <center>
+              <br />
+              <h2>
+                Opciones
+              </h2>
+              <br />
+            </center>
+            <hr />
+            <a href="/#/gear-calculator">
+              <Calculator/> Calculator
+            </a>
+            <a href="/#/gear-universe">
+              <Cog/> Universo
+            </a>
+            <a href="/#/user-list">
+              <HardDrive/> Gestior de datos
+            </a>
+            <a href="/#/user-list">
+              <User/> DB Test
+            </a>
+          </section>
+          
+        </div>
+        <section className="content">
          
+            <Routes>
+              <Route path="/" element={<UserList />} />
+              <Route path="/user-list" element={<UserList />} />
+              <Route path="/gear-calculator" element={<GearCalculator />} />
+              <Route path="/gear-universe" element={<p>Universo</p>} />
+              <Route path="/gear-calculator" element={<GearCalculator />} />
+              
+            </Routes>
+        
+        </section>
+          
       </div>
     </section> 
+    </Router>
   );
 }
 

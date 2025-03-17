@@ -29,4 +29,8 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  build: {
+    target: 'esnext', // Esto habilita el soporte para características modernas, como `top-level await`
+    minify: 'esbuild', // Usamos minificación con esbuild
+  },
 }));
