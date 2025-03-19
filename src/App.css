@@ -146,22 +146,6 @@ button {
   box-shadow: var(--shadow);
 }
 
-.menu-content a{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px;
-  margin: 4px;
-  transition: all ease 0.2s;
-}
-.menu-content a:hover{
-  text-shadow: white 0 0 15px;
-  transform: translateX(1rem);
-  border-radius: 25px;
-  transition: all ease 0.2s;
-}
-
-
 .content {
   grid-column: span 8 / span 8;
   grid-row: span 5 / span 5;

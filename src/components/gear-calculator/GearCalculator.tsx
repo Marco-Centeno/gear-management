@@ -4,14 +4,25 @@ import Button from "../ui-components/ui/button";
 import "./GearCalculator.css"
 import Card from "../ui-components/ui/card";
 import MachineSelector from "./MachineSelector ";
-import { Timer } from "lucide-react";
 import Alert from "../ui-components/ui/alert";
+import { lazy, Suspense } from "react";
+
+const listaDientes: number[] = [
+  12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 34, 36, 38, 40, 42, 44, 45, 46, 48, 50,
+  52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 105, 110, 115, 120,
+  125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 210, 220, 230, 240, 250, 260, 270, 280,
+  290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 520, 540,
+  560, 580, 600, 620, 640, 660, 680, 700, 720, 750, 780, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350,
+  1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000
+];
+
+type GearCombination = [number, number, number];
 
 const GearCalculator = () => {
   const [calculationType, setCalculationType] = useState<"paso" | "modulo">("paso");
   
   const [numTeeth, setNumTeeth] = useState<number | "">("");
-  const [k, setK] = useState<number | "">("");
+  //const [k, setK] = useState<number | "">("");
   const [pitch, setPitch] = useState<number | "">("");
   const [module, setModule] = useState<number | "">("");
   const [pressureAngle, setPressureAngle] = useState<number | "">("");
@@ -25,16 +36,9 @@ const GearCalculator = () => {
   // combinations //
   const [combinations, setCombinations] = useState<[number, number, number][]>([]);
   const [bestCombinations, setBestCombinations] = useState<[number, number, number][]>([]);
-  const listaDientes: number[] = [
-    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 34, 36, 38, 40, 42, 44, 45, 46, 48, 50,
-    52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 105, 110, 115, 120,
-    125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 210, 220, 230, 240, 250, 260, 270, 280,
-    290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 520, 540,
-    560, 580, 600, 620, 640, 660, 680, 700, 720, 750, 780, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350,
-    1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000
-  ];
   
-
+  
+/*
 const searchGearCombinations = (factorDeseado: number, tolerancia: number): [number, number, number][] => {
   const combinaciones: [number, number, number][] = [];
   listaDientes.forEach(z1 => {
@@ -46,10 +50,18 @@ const searchGearCombinations = (factorDeseado: number, tolerancia: number): [num
     });
   });
   return combinaciones;
+};*/
+
+const searchGearCombinations = (factor: number, tolerancy: number): GearCombination[] => {
+  return listaDientes.flatMap(z1 =>
+    listaDientes
+      .map(z2 => [z1, z2, z2 / z1] as GearCombination)
+      .filter(([_, __, RealFactor]) => Math.abs(RealFactor - factor) <= tolerancy)
+  );
 };
 
   const calculateGear = () => {
-    if (!tolerancy || !numTeeth || !pressureAngle || !angle || !k || !machineValue || (calculationType === "paso" && !pitch) || (calculationType === "modulo" && !module)) {
+    if (!tolerancy || !numTeeth || !pressureAngle || !angle || !machineValue || (calculationType === "paso" && !pitch) || (calculationType === "modulo" && !module)) {
       alert("Por favor, completa todos los campos requeridos.");
       return;
     }
@@ -65,7 +77,7 @@ const searchGearCombinations = (factorDeseado: number, tolerancia: number): [num
 
     if (calculationType === "paso") {
       if (!undercutAngle){ alert("Por favor, completa todos los campos requeridos."); return; }
-      calculatedDepth = (Number(numTeeth) * Number(pitch)) / (2 * Math.PI) + Number(k);
+      calculatedDepth = (Number(numTeeth) * Number(pitch)) / (2 * Math.PI) + Number(machineValue);
       calculatedFactor = Math.cos((Number(pressureAngle) * Math.PI) / 180) * (Number(angle) / (Number(undercutAngle) || 1));
       calculatedRadius = (Number(machineValue) * Math.sin((Number(angle) * Math.PI) / 180) * Number(pitch)) / 25.4;      
     } else {
@@ -105,7 +117,7 @@ const searchGearCombinations = (factorDeseado: number, tolerancia: number): [num
             </div>
             <div>
                 <label>Coeficiente K</label><br />
-                <Input type="number" value={k} onChange={(e) => setK(e.target.value ? Number(e.target.value) : "")} />
+                <Input type="number" value={machineValue} onChange={(e) => setMachineValue(e.target.value ? Number(e.target.value) : "")} />
             </div>
             <div>
               <MachineSelector machineValue={machineValue} setMachineValue={setMachineValue} />
@@ -127,8 +139,8 @@ const searchGearCombinations = (factorDeseado: number, tolerancia: number): [num
                 <Input type="number" value={pressureAngle} onChange={(e) => setPressureAngle(e.target.value ? Number(e.target.value) : "")} />
             </div>
             <div>
-                <label>Ángulo</label><br />
-                <Input icon="<Timer />" type="number" value={angle} onChange={(e) => setAngle(e.target.value ? Number(e.target.value) : "")} />
+                <label>Grados</label><br />
+                <Input type="number" value={angle} onChange={(e) => setAngle(e.target.value ? Number(e.target.value) : "")} />
             </div>
             <div>
                 <label>Ángulo de destalonamiento</label><br />
@@ -169,8 +181,7 @@ const searchGearCombinations = (factorDeseado: number, tolerancia: number): [num
               {bestCombinations.map(([z1, z2, factor], index) => (
                 <Alert variant="info" >
                   <p key={index}>Z1: {z1}, Z2: {z2}, Relación: {factor.toFixed(3)}</p>
-                </Alert>
-                
+                </Alert>                
               ))}
             </div>
             
