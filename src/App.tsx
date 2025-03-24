@@ -5,6 +5,7 @@ import GearCalculator from "./components/gear-calculator/GearCalculator";
 import { HashRouter  as Router, Route, Routes } from "react-router";
 import { Calculator, Cog, Divide, HardDrive, User } from "lucide-react";
 import NavBar from "./components/window/NavBar";
+import Universe from "./views/Universe";
 //import { DashboardLayout } from "./components/ui-components/dashboard-layout";
 //import { invoke } from "@tauri-apps/api/core";
 
@@ -33,7 +34,7 @@ function App() {
               <Route path="/" element={<div>Home</div>} />
               <Route path="/user-list" element={<UserList />} />
               <Route path="/gear-calculator" element={<GearCalculator />} />
-              <Route path="/gear-universe" element={<p>Universo</p>} />
+              <Route path="/gear-universe" element={<Universe />} />
               <Route path="/gear-calculator" element={<GearCalculator />} />
             </Routes>
         </section>
