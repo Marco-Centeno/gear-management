@@ -1,4 +1,4 @@
-import { Calculator, Cog, HardDrive, User } from 'lucide-react'
+import { Calculator, Cog, HardDrive, Home, User } from 'lucide-react'
 import { useState } from 'react'
 import '../window/NavBar.css'
 
@@ -13,7 +13,10 @@ function NavBar() {
       </strong>
     </center>
     <hr />
-    <a href="/#/gear-calculator" onClick={() => (setNavigation('Home'))} className={navigation == 'Home' ? 'navigation-selected' : ''} >
+    <a href="/#/" onClick={() => (setNavigation('Home'))} className={navigation == 'Home' ? 'navigation-selected' : ''} >
+      <Home/> <span>Home</span>
+    </a>
+    <a href="/#/gear-calculator" onClick={() => (setNavigation('Calculator'))} className={navigation == 'Calculator' ? 'navigation-selected' : ''} >
       <Calculator/> <span>Calculator</span>
     </a>
     <a href="/#/gear-universe" onClick={() => (setNavigation('Universe'))} className={navigation == 'Universe' ? 'navigation-selected' : ''}>

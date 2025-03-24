@@ -25,8 +25,7 @@ export async function setupDatabase() {
     CREATE TABLE IF NOT EXISTS Universe (
       UniversePK INTEGER PRIMARY KEY AUTOINCREMENT,
       GearTooth NVARCHAR(50) NOT NULL,
-      ACTIVE BIT NOT NULL,
-      FOREIGN KEY (MachineFK) REFERENCES Machine(MachinePK)
+      ACTIVE BIT NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS Client (
