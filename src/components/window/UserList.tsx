@@ -1,77 +1,87 @@
 import { useEffect, useState } from "react";
-import { setupDatabase, getUsers, addUser, deleteUser } from "../../database/context";
+import { setupDatabase, getMachines, addMachine, deleteMachine } from "../../database/context";
 import Alert from "../ui-components/ui/alert";
 import Input from "../ui-components/ui/input";
 import Button from "../ui-components/ui/button";
-import Card  from "../ui-components/ui/card";
+import Card from "../ui-components/ui/card";
 
-interface User {
+interface Machine {
   id: number;
   name: string;
-  email: string;
+  constant: number;
+  updated?: string;
+  active: boolean;
 }
 
-export default function UserList() {
-  const [users, setUsers] = useState<User[]>([]);
+export default function MachineList() {
+  const [machines, setMachines] = useState<Machine[]>([]);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [constant, setConstant] = useState("");
+  const [active, setActive] = useState(true);
 
-  // Cargar la base de datos y obtener usuarios al inicio
+  // Cargar la base de datos y obtener máquinas al inicio
   useEffect(() => {
-    setupDatabase().then(() => loadUsers());
+    setupDatabase().then(() => loadMachines());
   }, []);
 
-  async function loadUsers() {
-    const data = await getUsers();
-    setUsers(data as User[]);
+  async function loadMachines() {
+    const data = await getMachines();
+    setMachines(data as Machine[]);
   }
 
-  async function handleAddUser() {
-    if (name && email) {
-      await addUser(name, email);
-      loadUsers();
+  async function handleAddMachine() {
+    if (name && constant) {
+      const updatedAt = new Date().toISOString(); // Fecha en formato ISO (YYYY-MM-DDTHH:MM:SS.sssZ)
+      const activeValue = active ? 1 : 0; // Convierte booleano a número
+  
+      await addMachine(name, parseFloat(constant), updatedAt, activeValue);
+      loadMachines();
       setName("");
-      setEmail("");
+      setConstant("");
+      setActive(true);
     }
   }
 
-  async function handleDeleteUser(id: number) {
-    await deleteUser(id);
-    loadUsers();
+  async function handleDeleteMachine(id: number) {
+    await deleteMachine(id);
+    loadMachines();
   }
 
   return (
     <div>
-    <Card title="Agregar Usuario" description="Llena el formulario provar la base de datos">
+      <Card title="Agregar Máquina" description="Llena el formulario para agregar una máquina">
         <Input
-            type="text"
-            placeholder="Nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Nombre"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <Input
-            type="email"
-            placeholder="Correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+          type="number"
+          placeholder="Constante"
+          value={constant}
+          onChange={(e) => setConstant(e.target.value)}
         />
-        <Button variant="primary" onClick={handleAddUser}>Agregar</Button>
-    </Card>
+        <Button variant="primary" onClick={handleAddMachine}>Agregar</Button>
+      </Card>
       <br />
       <hr />
       <br />
-        <Alert variant="primary">
-            <h2>Usuarios</h2>
-        </Alert>
+      <Alert variant="primary">
+        <h2>Máquinas</h2>
+      </Alert>
       <ul>
-        {users.map((user) => (
-          <Card data-aos="fade-up"
-          data-aos-anchor-placement="bottom-bottom" key={user.id}>
-            <strong>{user.name}</strong> - {user.email}{" "}
-            <Button variant="default" onClick={() => handleDeleteUser(user.id)}>🗑️</Button>
-          </Card>
-        ))}
-      </ul>      
+      <ul>
+      {machines.map((machine) => (
+        <Card key={machine.id}>
+          <strong>{machine.name}</strong> - Constante: {machine.constant}
+          <Button variant="default" onClick={() => handleDeleteMachine(machine.id)}>🗑️</Button>  {/* Botón de eliminar */}
+        </Card>
+      ))}
+    </ul>
+
+</ul>
+ 
     </div>
   );
 }
