@@ -16,25 +16,27 @@ export async function setupDatabase() {
 
     CREATE TABLE IF NOT EXISTS Machine (
       MachinePK INTEGER PRIMARY KEY AUTOINCREMENT,
-      Name NVARCHAR(50) NOT NULL,
-      Constant DOUBLE NOT NULL,
-      UPDATED DATETIME,
+      Name NVARCHAR(50),
+      Constant DOUBLE,
+      UPDATED DATETIME NOT NULL,
       ACTIVE BIT NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS Universe (
       UniversePK INTEGER PRIMARY KEY AUTOINCREMENT,
-      GearTooth NVARCHAR(50) NOT NULL,
-      ACTIVE BIT NOT NULL
+      GearTooth NVARCHAR(50),
+      MachineFK INTEGER,
+      ACTIVE BIT NOT NULL,
+      FOREIGN KEY (MachineFK) REFERENCES Machine(MachinePK)
     );
 
     CREATE TABLE IF NOT EXISTS Client (
       ClientPK INTEGER PRIMARY KEY AUTOINCREMENT,
-      Name NVARCHAR(50) NOT NULL,
+      Name NVARCHAR(50),
       Description NVARCHAR(500),
       ContactRef NVARCHAR(200),
       Direction NVARCHAR(200),
-      UPDATED DATETIME,
+      UPDATED DATETIME NOT NULL,
       ACTIVE BIT NOT NULL
     );
 
@@ -46,7 +48,7 @@ export async function setupDatabase() {
       Result DOUBLE,
       GearTooth INTEGER,
       Campo TEXT,
-      UPDATED DATETIME,
+      UPDATED DATETIME NOT NULL,
       ACTIVE BIT NOT NULL,
       FOREIGN KEY (MachineFK) REFERENCES Machine(MachinePK),
       FOREIGN KEY (UniverseFK) REFERENCES Universe(UniversePK),
