@@ -1,4 +1,5 @@
 export interface IMachine {
+    MachinePK: number | null;
     Name: string;
     Constant: number | string;
     UPDATED: string;

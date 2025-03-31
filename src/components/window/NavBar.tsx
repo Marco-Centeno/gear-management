@@ -26,8 +26,9 @@ function NavBar() {
       <HardDrive/> <span>Datos</span> 
     </a>
     <a href="/#/client-manager" onClick={() => (setNavigation('Clients'))} className={navigation == 'ClientManager' ? 'navigation-selected' : ''}>
-      <User/> <span>Clientes</span> 
-      </a>
+      <User/> <span>Clientes</span>
+    </a>
+    
     <a href="/#/universe" onClick={() => (setNavigation('DbTest'))} className={navigation == 'DbTest' ? 'navigation-selected' : ''}>
       <User/> <span>DB Test</span> 
     </a>

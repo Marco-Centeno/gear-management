@@ -4,17 +4,10 @@ import Alert from "../ui-components/ui/alert";
 import Input from "../ui-components/ui/input";
 import Button from "../ui-components/ui/button";
 import Card from "../ui-components/ui/card";
-
-interface Machine {
-  id: number;
-  name: string;
-  constant: number;
-  updated?: string;
-  active: boolean;
-}
+import { IMachine } from "../../utils/interface";
 
 export default function MachineList() {
-  const [machines, setMachines] = useState<Machine[]>([]);
+  const [machines, setMachines] = useState<IMachine[]>([]);
   const [name, setName] = useState("");
   const [constant, setConstant] = useState("");
   const [active, setActive] = useState(true);
@@ -26,7 +19,7 @@ export default function MachineList() {
 
   async function loadMachines() {
     const data = await getMachines();
-    setMachines(data as Machine[]);
+    setMachines(data as IMachine[]);
   }
 
   async function handleAddMachine() {
@@ -73,9 +66,9 @@ export default function MachineList() {
       <ul>
       <ul>
       {machines.map((machine) => (
-        <Card key={machine.id}>
-          <strong>{machine.name}</strong> - Constante: {machine.constant}
-          <Button variant="default" onClick={() => handleDeleteMachine(machine.id)}>🗑️</Button>  {/* Botón de eliminar */}
+        <Card key={machine.MachinePK}>
+          <strong>{machine.Name}</strong> - Constante: {machine.Constant}
+          <Button variant="default" onClick={() => handleDeleteMachine(machine.MachinePK)}>🗑️</Button>  {/* Botón de eliminar */}
         </Card>
       ))}
     </ul>
