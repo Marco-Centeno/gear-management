@@ -12,6 +12,16 @@ export interface IUniverse {
     ACTIVE: number;
 }
 
+export interface iClients {
+    ClientPK: number;
+    Name: string;
+    Description: string;
+    ContactRef: string;
+    Direction: string;
+    UPDATED: string;
+    ACTIVE: number;
+}
+
 export interface IMachineGearHistory {
 
 }

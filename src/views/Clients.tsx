@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import Input from '../components/ui-components/ui/input';
-import { Clients } from '../utils/interfaceClients';
+import { iClients } from '../utils/interface';
 import { addClient, getClients, deleteClient, setupDatabase } from '../database/context';
 import Button from '../components/ui-components/ui/button';
 import Alert from '../components/ui-components/ui/alert';
+import { Today } from '../utils/Extention';
 
 function ClientManager() {
-  const today = new Date().toISOString(); // Fecha en formato ISO
-
+  
   useEffect(() => {
     setupDatabase().then(() => loadClients());
   }, []);
 
-  const [clientList, setClientList] = useState<Clients[]>([]);
-  const [client, setClient] = useState<Omit<Clients, "ClientPK">>({
+  const [clientList, setClientList] = useState<iClients[]>([]);
+  const [client, setClient] = useState<Omit<iClients, "ClientPK">>({
     Name: "",
     Description: "",
     ContactRef: "",
     Direction: "",
-    UPDATED: today,
+    UPDATED: Today,
     ACTIVE: 1
   });
 
@@ -43,12 +43,12 @@ function ClientManager() {
     );
 
     loadClients(); // Recargar la lista de clientes
-    setClient({ Name: "", Description: "", ContactRef: "", Direction: "", UPDATED: today, ACTIVE: 1 });
+    setClient({ Name: "", Description: "", ContactRef: "", Direction: "", UPDATED: Today, ACTIVE: 1 });
   };
 
   async function loadClients() {
     const data = await getClients();
-    setClientList(data as Clients[]);
+    setClientList(data as iClients[]);
   }
 
   const handleDelete = async (id: number) => {
