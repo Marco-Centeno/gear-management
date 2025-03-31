@@ -1,23 +1,39 @@
 
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useEffect } from "react"
 import { Plus } from "lucide-react"
-import type { Machine } from "../../utils/interface"
+import type { IMachine } from "../../utils/interface"
 import "./MachineSection.css"
-import { addMachine } from "../../database/context"
-import { today } from "../../utils/Extention"
+import { addMachine, getMachines, setupDatabase } from "../../database/context"
+import { Today } from "../../utils/Extention"
 
 export function MachineSection() {
   const [showForm, setShowForm] = useState(false)
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [page, setPage] = useState(1)
-  const [machine, setMachine] = useState<Machine>({
+  const [machines, setMachines] = useState<IMachine[]>([{
     Name: "",
     Constant: "",
-    UPDATED: today,
+    UPDATED: Today,
+    ACTIVE: 1
+  }]);
+  const [machine, setMachine] = useState<IMachine>({
+    Name: "",
+    Constant: "",
+    UPDATED: Today,
     ACTIVE: 1
   });
-  const ITEMS_PER_PAGE = 10
+  
+  const ITEMS_PER_PAGE = 1
+
+  useEffect(() => {
+    setupDatabase().then(() => loadMachines());
+  }, []);
+
+  async function loadMachines() {
+    const data = await getMachines();
+    setMachines(data as IMachine[]);
+  }
 
   const observer = useRef<IntersectionObserver | null>(null)
   const lastMachineRef = useCallback(
@@ -33,9 +49,12 @@ export function MachineSection() {
     [machines.length, page],
   )
 
+  
+  
+
   const displayedMachines = machines.slice(0, page * ITEMS_PER_PAGE)
 
-  const handleSubmit =  = async () => {
+  const handleSubmit = async () => {
     if (machine.Name.trim() === "" || machine.Constant === "") {
       alert("Por favor, ingrese todos los valores.");
       return;

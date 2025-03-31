@@ -1,7 +1,9 @@
+import { Today } from "./Extention";
 export interface IMachine {
+    MachinePK: number;
     Name: string;
     Constant: number | string;
-    UPDATED: string;
+    UPDATED: () => ({ Today });
     ACTIVE: number;
 }
 
