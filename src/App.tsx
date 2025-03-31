@@ -7,6 +7,8 @@ import NavBar from "./components/window/NavBar";
 import Universe from "./views/Universe";
 import Clients from "./views/Clients";
 import UniverseView from "./views/UniverseView";
+import Home from "./views/Home";
+
 //import { DashboardLayout } from "./components/ui-components/dashboard-layout";
 //import { invoke } from "@tauri-apps/api/core";
 
@@ -32,7 +34,7 @@ function App() {
         </div>
         <section className="content">
             <Routes>
-              <Route path="/" element={<div>Home</div>} />
+              <Route path="/" element={<Home />} />
               <Route path="/user-list" element={<UserList />} />
               <Route path="/gear-calculator" element={<GearCalculator />} />
               <Route path="/gear-universe" element={<Universe />} />

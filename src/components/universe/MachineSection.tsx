@@ -5,24 +5,15 @@ import type { IMachine } from "../../utils/interface"
 import "./MachineSection.css"
 import { addMachine, getMachines, setupDatabase } from "../../database/context"
 import { Today } from "../../utils/Extention"
+import { Machine } from "../../utils/GearManagementModel"
 
 export function MachineSection() {
   const [showForm, setShowForm] = useState(false)
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [page, setPage] = useState(1)
-  const [machines, setMachines] = useState<IMachine[]>([{
-    Name: "",
-    Constant: "",
-    UPDATED: Today,
-    ACTIVE: 1
-  }]);
-  const [machine, setMachine] = useState<IMachine>({
-    Name: "",
-    Constant: "",
-    UPDATED: Today,
-    ACTIVE: 1
-  });
+  const [machines, setMachines] = useState<IMachine[]>([ new Machine(0,"","") ]);
+  const [machine, setMachine] = useState<IMachine>( new Machine(0,"","") );
   
   const ITEMS_PER_PAGE = 1
 

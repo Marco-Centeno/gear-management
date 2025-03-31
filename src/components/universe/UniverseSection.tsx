@@ -2,12 +2,12 @@ import type React from "react"
 
 import { useState, useRef, useCallback } from "react"
 import { Plus } from "lucide-react"
-import type { Machine, Universe } from "../../utils/interface"
+import type { IMachine, IUniverse } from "../../utils/interface"
 import "./UniverseSection.css"
 interface UniverseSectionProps {
-  universes: Universe[]
-  machines: Machine[]
-  addUniverse: (universe: Universe) => void
+  universes: IUniverse[]
+  machines: IMachine[]
+  addUniverse: (universe: IUniverse) => void
 }
 
 export function UniverseSection({ universes, machines, addUniverse }: UniverseSectionProps) {
