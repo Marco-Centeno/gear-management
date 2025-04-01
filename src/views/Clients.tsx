@@ -5,15 +5,19 @@ import { addClient, getClients, deleteClient, setupDatabase } from '../database/
 import Button from '../components/ui-components/ui/button';
 import Alert from '../components/ui-components/ui/alert';
 import { Today } from '../utils/Extention';
+import { Plus } from 'lucide-react';
+import "./Clients.css";
+import "../components/universe/MachineSection.css"
+
 
 function ClientManager() {
-  
   useEffect(() => {
     setupDatabase().then(() => loadClients());
   }, []);
 
+  const [showForm, setShowForm] = useState(false);
   const [clientList, setClientList] = useState<iClients[]>([]);
-  const [client, setClient] = useState<Omit<iClients, "ClientPK">>({
+  const [client, setClient] = useState<Omit<iClients, "ClientPK">>({ 
     Name: "",
     Description: "",
     ContactRef: "",
@@ -44,6 +48,7 @@ function ClientManager() {
 
     loadClients(); // Recargar la lista de clientes
     setClient({ Name: "", Description: "", ContactRef: "", Direction: "", UPDATED: Today, ACTIVE: 1 });
+    setShowForm(false);
   };
 
   async function loadClients() {
@@ -60,53 +65,63 @@ function ClientManager() {
 
   return (
     <section className="client-manager">
-      <div>
-        <p>Clientes</p>
-        <hr />
-
-        {/* Formulario para agregar cliente */}
-        <section>
-          <div>
-            <label>Nombre</label>
-            <Input 
-              value={client.Name}
-              onChange={(e) => setClient({ ...client, Name: e.target.value })} 
-            />
-          </div>
-          <div>
-            <label>Descripción</label>
-            <Input 
-              value={client.Description}
-              onChange={(e) => setClient({ ...client, Description: e.target.value })} 
-            />
-          </div>
-          <div>
-            <label>Contacto</label>
-            <Input 
-              value={client.ContactRef}
-              onChange={(e) => setClient({ ...client, ContactRef: e.target.value })} 
-            />
-          </div>
-          <div>
-            <label>Dirección</label>
-            <Input 
-              value={client.Direction}
-              onChange={(e) => setClient({ ...client, Direction: e.target.value })} 
-            />
-          </div>
-          <Button variant="primary" onClick={handleClient}>Guardar</Button>
-        </section>   
-
-        {/* Historial de clientes */}
-        <section>
-          {clientList.map((client) => (
-            <Alert variant="info" key={client.ClientPK}>
-              {client.Name} - {client.Description} - {client.ContactRef} - {client.Direction} - {client.UPDATED}
-              <Button variant="danger" onClick={() => handleDelete(client.ClientPK)}>🗑️</Button>
-            </Alert>
-          ))}
-        </section>        
+      <div className="section-header">
+        <h2>Clientes</h2>
+        <button className="add-button" onClick={() => setShowForm(true)}>
+          <Plus size={20} /> Agregar Cliente
+        </button>
       </div>
+      <hr />
+
+      {showForm && (
+        <div className="form-container">
+          <form className="machine-form">
+            <h3>Nuevo Cliente</h3>
+            <div className="form-group">
+              <label>Nombre</label>
+              <Input 
+                value={client.Name}
+                onChange={(e) => setClient({ ...client, Name: e.target.value })} 
+              />
+            </div>
+            <div className="form-group">
+              <label>Descripción</label>
+              <Input 
+                value={client.Description}
+                onChange={(e) => setClient({ ...client, Description: e.target.value })} 
+              />
+            </div>
+            <div className="form-group">
+              <label>Contacto</label>
+              <Input 
+                value={client.ContactRef}
+                onChange={(e) => setClient({ ...client, ContactRef: e.target.value })} 
+              />
+            </div>
+            <div className="form-group">
+              <label>Dirección</label>
+              <Input 
+                value={client.Direction}
+                onChange={(e) => setClient({ ...client, Direction: e.target.value })} 
+              />
+            </div>
+            <div className="form-actions">
+              <Button variant="danger" onClick={() => setShowForm(false)}>Cancelar</Button>
+              <Button variant="primary" onClick={handleClient}>Guardar</Button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Historial de clientes */}
+      <section>
+        {clientList.map((client) => (
+          <Alert variant="info" key={client.ClientPK}>
+            {client.Name} - {client.Description} - {client.ContactRef} - {client.Direction} - {client.UPDATED}
+            <Button variant="danger" onClick={() => handleDelete(client.ClientPK)}>🗑️</Button>
+          </Alert>
+        ))}
+      </section>        
     </section>
   );
 }
